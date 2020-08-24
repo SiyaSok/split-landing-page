@@ -1,0 +1,127 @@
+$primary-color: #3f51b5;
+$dark-color: #e91e63;
+$speed: 1000ms;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+@mixin tran {
+	transition: all $speed ease-in-out;
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: #333;
+}
+
+.Sides {
+	// width: 50%;
+	// height: 100vh;
+	// float: left;
+	// position: relative;
+
+	position: absolute;
+	width: 50%;
+	height: 100vh;
+	overflow: hidden;
+
+	&.Left {
+		// background-image: url("img/adult-art-artwork-1081685.jpg");
+		background: url('/dist/img/adult-art-artwork-1081685.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center center;
+		// height: 100vh;
+		// position: relative;
+		left: 0;
+	}
+	&.Left::before {
+		content: "";
+		position: absolute;
+		background-color: $primary-color;
+		opacity: 0.7;
+		height: 100vh;
+		width: 100%;
+		left: 0;
+		right: 0;
+	}
+	&.Right {
+		background: url('/dist/img/gray-laptop-computer-showing-html-codes-in-shallow-focus-160107.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center center;
+		// height: 100vh;
+		// position: relative;
+		right: 0;
+
+		&::before {
+			content: "";
+			position: absolute;
+			background-color: $dark-color;
+			opacity: 0.7;
+			height: 100vh;
+			width: 100%;
+			right: 0;
+			left: 0;
+		}
+	}
+}
+
+.heading {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 35%;
+	color: #fff;
+	text-align: center;
+
+	i {
+		font-size: 2rem;
+	}
+
+	h1 {
+		font-size: 3rem;
+		font-weight: 700;
+	}
+}
+
+.Right,
+.Right::before,
+.Left,
+.Left::before {
+	@include tran();
+}
+
+.hover-left {
+	.Left {
+		width: 70%;
+	}
+
+	.Right {
+		width: 30%;
+
+		&::before {
+			z-index: 2;
+		}
+	}
+}
+
+.hover-right {
+	.Right {
+		width: 70%;
+	}
+
+	.Left {
+		width: 30%;
+
+		&::before {
+			z-index: 2;
+		}
+	}
+}
